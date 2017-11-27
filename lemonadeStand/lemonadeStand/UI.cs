@@ -44,10 +44,13 @@ namespace lemonadeStand
             }
         } 
 
-        public int displayPurchaseScreen(Inventory playerInventory)
+        public void displayPurchaseScreen(Player player, Weather forcast)
         {
+            Inventory playerInventory = player.getInventory();
             Console.WriteLine("Inventory/Purchasing");
+            Console.WriteLine("The Forcast for tomorrow is: " + forcast.getTempurature() + " and " + forcast.getWeather());
             Console.WriteLine("You have:");
+            Console.WriteLine("$" + player.getMoney());
             Console.WriteLine(playerInventory.getCups() + "Paper Cups");
             Console.WriteLine(playerInventory.getNumOfLemons() + "Lemons");
             Console.WriteLine(playerInventory.getSugar() + "Cups of Sugar");

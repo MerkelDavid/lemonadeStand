@@ -24,7 +24,8 @@ namespace lemonadeStand
 
         public void inventoryScreen()
         {
-            UIInstance.displayPurchaseScreen(player1.getInventory());
+            Weather forcast = new Weather();
+            UIInstance.displayPurchaseScreen(player1,forcast);
             int inventoryInput = Convert.ToInt32(Console.ReadLine());
             if (UIInstance.isValidInventoryInput(inventoryInput)){
                 inventorySwitch(inventoryInput);

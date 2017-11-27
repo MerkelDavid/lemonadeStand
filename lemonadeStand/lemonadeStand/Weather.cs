@@ -39,7 +39,7 @@ namespace lemonadeStand
                 return "cloudy";
             }
         }
-        public string GetWeather()
+        public string getWeather()
         {
             return weather;
         }
