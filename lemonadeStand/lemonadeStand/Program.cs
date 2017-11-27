@@ -10,6 +10,8 @@ namespace lemonadeStand
     {
         static void Main(string[] args)
         {
+            UI UIInstance = new UI();
+            UIInstance.TitleScreen();
         }
     }
 }

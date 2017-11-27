@@ -8,5 +8,16 @@ namespace lemonadeStand
 {
     class Game
     {
+        private int numDays;
+
+        public Game(int numDays)
+        {
+            this.numDays = numDays;
+        }
+
+        public void GameLoop()
+        {
+
+        }
     }
 }
