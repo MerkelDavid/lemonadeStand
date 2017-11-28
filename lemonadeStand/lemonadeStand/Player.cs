@@ -131,9 +131,6 @@ namespace lemonadeStand
         }
         public void purchaseSugar(int userChoice)
         {
-            Console.WriteLine("1. 8 cups for $0.65");
-            Console.WriteLine("2. 20 cups for $1.74");
-            Console.WriteLine("1. 48 cups for $3.37");
             if (userChoice == 1)
             {
                 if (money > .65)
@@ -176,9 +173,6 @@ namespace lemonadeStand
         }
         public void purchaseIceCubes(int userChoice)
         {
-            Console.WriteLine("1. 100 ice cubes for $0.78");
-            Console.WriteLine("2. 250 ice cubes for $2.12");
-            Console.WriteLine("1. 500 ice cubes for $3.72");
             if (userChoice == 1)
             {
                 if (money > .78)
@@ -209,7 +203,7 @@ namespace lemonadeStand
             {
                 if (money > 3.72)
                 {
-                    playerInventory.addSugar(500);
+                    playerInventory.addIceCubes(500);
                     subtractMoney(3.72);
                     Console.WriteLine("Your purchase was successfull.");
                 }

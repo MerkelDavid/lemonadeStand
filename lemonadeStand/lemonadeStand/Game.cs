@@ -17,23 +17,26 @@ namespace lemonadeStand
             this.numDays = numDays;
         }
 
-        public void GameLoop()
+        public Weather generateWeather()
         {
-            inventoryScreen(null);
-            //UIInstance.lemonadeCreation();
+            return new Weather();
         }
 
-        public void inventoryScreen(Weather forcast)
+        public void GameLoop()
         {
-            if (forcast == null)
-            {
-                forcast = new Weather();
-            }
+            Weather forcast = generateWeather();
+            inventoryScreen(null);
+            Lemonade recipe = UIInstance.lemonadeCreation();
+            simulateDay(recipe,forcast);
+        }
+
+        public Weather inventoryScreen(Weather forcast)
+        {
             UIInstance.displayPurchaseScreen(player1, forcast);
             int inventoryInput = Convert.ToInt32(Console.ReadLine());
             if (UIInstance.isValidInventoryInput(inventoryInput))
             {
-                inventorySwitch(inventoryInput,forcast);
+                inventorySwitch(inventoryInput,forcast); 
             }
             else
             {
@@ -142,5 +145,11 @@ namespace lemonadeStand
             }
             else return false;
         }
+
+        public void simulateDay(Lemonade recipe,Weather forcast)
+        {
+            int numberOfCustomers = generateNumberOfCustomers(recipe, forcast);
+        }
+
     }
 }
