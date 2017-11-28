@@ -33,6 +33,7 @@ namespace lemonadeStand
             else if(weatherSeed == 2)
             {
                 return "rainy";
+
             }
             else
             {

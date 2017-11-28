@@ -8,13 +8,15 @@ namespace lemonadeStand
 {
     class Inventory
     {
-        private List<Lemon> lemonBasket;
+        private List<Lemon> lemonBasket = new List<Lemon>();
         private int numOfIceCubes;
         private int numOfCups;
         private int numOfSugar;
 
         public Inventory()
         {
+            Lemon newLemon = new Lemon();
+            lemonBasket.Add(newLemon);
             numOfCups = 0;
             numOfIceCubes = 0;
             numOfSugar = 0;

@@ -34,7 +34,7 @@ namespace lemonadeStand
 
         public bool Between7And100(int numDays)
         {
-            if(numDays>6 || numDays < 101)
+            if(numDays>6 && numDays < 101)
             {
                 return true;
             }
@@ -51,10 +51,10 @@ namespace lemonadeStand
             Console.WriteLine("The Forcast for tomorrow is: " + forcast.getTempurature() + " and " + forcast.getWeather());
             Console.WriteLine("You have:");
             Console.WriteLine("$" + player.getMoney());
-            Console.WriteLine(playerInventory.getCups() + "Paper Cups");
-            Console.WriteLine(playerInventory.getNumOfLemons() + "Lemons");
-            Console.WriteLine(playerInventory.getSugar() + "Cups of Sugar");
-            Console.WriteLine(playerInventory.getIceCubes() + "Ice Cubes");
+            Console.WriteLine(playerInventory.getCups() + " Paper Cups");
+            Console.WriteLine(playerInventory.getNumOfLemons() + " Lemons");
+            Console.WriteLine(playerInventory.getSugar() + " Cups of Sugar");
+            Console.WriteLine(playerInventory.getIceCubes() + " Ice Cubes");
             Console.WriteLine("Would you like to:");
             Console.WriteLine("1. buy more cups.");
             Console.WriteLine("2. buy more Lemons.");
@@ -79,7 +79,7 @@ namespace lemonadeStand
             Console.WriteLine("you have " + playerInventory.getCups() + " cups and " +player.getMoney()+" dollars.\n how many would you like to purchase?");
             Console.WriteLine("1. 25 cups for $0.76");
             Console.WriteLine("2. 50 cups for $1.62");
-            Console.WriteLine("1. 100 cups for $2.84");
+            Console.WriteLine("3. 100 cups for $2.84");
         }
 
         public void lemonScreen(Player player)
@@ -108,6 +108,7 @@ namespace lemonadeStand
             Console.WriteLine("2. 250 ice cubes for $2.12");
             Console.WriteLine("1. 500 ice cubes for $3.72");
         }
+
     }
 
 }

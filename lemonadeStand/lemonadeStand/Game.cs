@@ -9,8 +9,8 @@ namespace lemonadeStand
     class Game
     {
         private int numDays;
-        UI UIInstance = new UI();
-        Player player1 = new Player();
+        private UI UIInstance = new UI();
+        private Player player1 = new Player();
 
         public Game(int numDays)
         {
@@ -19,58 +19,128 @@ namespace lemonadeStand
 
         public void GameLoop()
         {
-            inventoryScreen();
+            inventoryScreen(null);
+            //UIInstance.lemonadeCreation();
         }
 
-        public void inventoryScreen()
+        public void inventoryScreen(Weather forcast)
         {
-            Weather forcast = new Weather();
-            UIInstance.displayPurchaseScreen(player1,forcast);
+            if (forcast == null)
+            {
+                forcast = new Weather();
+            }
+            UIInstance.displayPurchaseScreen(player1, forcast);
             int inventoryInput = Convert.ToInt32(Console.ReadLine());
-            if (UIInstance.isValidInventoryInput(inventoryInput)){
-                inventorySwitch(inventoryInput);
+            if (UIInstance.isValidInventoryInput(inventoryInput))
+            {
+                inventorySwitch(inventoryInput,forcast);
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("Please enter a valid input");
-                inventoryScreen();
+                inventoryScreen(forcast);
             }
         }
 
-        public void inventorySwitch(int inventoryInput)
+        public void inventorySwitch(int inventoryInput,Weather forcast)
         {
-            string userChoice;
 
             switch (inventoryInput)
             {
                 case 1:
-                    Console.Clear();
-                    UIInstance.cupsScreen(player1);
-                    userChoice = Console.ReadLine();
+                    cupsOptions();
+                    inventoryScreen(forcast);
                     break;
                 case 2:
-                    Console.Clear();
-                    UIInstance.lemonScreen(player1);
-                    userChoice = Console.ReadLine();
+                    lemonsOptions();
+                    inventoryScreen(forcast);
                     break;
                 case 3:
-                    Console.Clear();
-                    UIInstance.sugarScreen(player1);
-                    userChoice = Console.ReadLine();
+                    sugarOptions();
+                    inventoryScreen(forcast);
                     break;
                 case 4:
-                    Console.Clear();
-                    UIInstance.iceScreen(player1);
-                    userChoice = Console.ReadLine();
+                    iceOptions();
+                    inventoryScreen(forcast);
                     break;
                 case 5:
                     Console.Clear();
-                    lemonadeCreation();
                     break;
                 case 6:
                     //quit
                     break;
             }
+        }
+
+        public void cupsOptions()
+        {
+            Console.Clear();
+            UIInstance.cupsScreen(player1);
+            string userChoice = Console.ReadLine();
+            if (userChoiceValidation(userChoice))
+            {
+                player1.purchaseCups(Convert.ToInt32(userChoice));
+            }
+            else
+            {
+                cupsOptions();
+            }
+        }
+
+        public void lemonsOptions()
+        {
+            Console.Clear();
+            UIInstance.lemonScreen(player1);
+            string userChoice = Console.ReadLine();
+            if (userChoiceValidation(userChoice))
+            {
+                player1.purchaseLemons(Convert.ToInt32(userChoice));
+            }
+            else
+            {
+                lemonsOptions();
+            }
+        }
+
+        public void sugarOptions()
+        {
+            Console.Clear();
+            UIInstance.sugarScreen(player1);
+            string userChoice = Console.ReadLine();
+            if (userChoiceValidation(userChoice))
+            {
+                player1.purchaseSugar(Convert.ToInt32(userChoice));
+            }
+            else
+            {
+                sugarOptions();
+            }
+        }
+
+        public void iceOptions()
+        {
+            Console.Clear();
+            UIInstance.iceScreen(player1);
+            string userChoice = Console.ReadLine();
+            if (userChoiceValidation(userChoice))
+            {
+                player1.purchaseIceCubes(Convert.ToInt32(userChoice));
+            }
+            else
+            {
+                iceOptions();
+            }
+        }
+
+        public bool userChoiceValidation(string userChoice)
+        {
+            int n;
+            if (int.TryParse(userChoice, out n) && n > 0 && n < 4)
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }
