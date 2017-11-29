@@ -22,7 +22,7 @@ namespace lemonadeStand
             Console.WriteLine("How many days would you like to play for? (enter a number between 7 and 100)");
             int numDays = Convert.ToInt32(Console.ReadLine());
             if (Between7And100(numDays)) {
-                Game gameInstance = new Game(numDays);
+                Game gameInstance = new Game();
                 gameInstance.GameLoop();
             }
             else
@@ -30,6 +30,12 @@ namespace lemonadeStand
                 Console.WriteLine("please enter a number between 7 and 100");
                 GetDays();
             }
+        }
+
+        public string getUserName()
+        {
+            Console.WriteLine("What is your name?");
+            return Console.ReadLine();
         }
 
         public bool Between7And100(int numDays)
@@ -88,7 +94,7 @@ namespace lemonadeStand
             Console.WriteLine("you have " + playerInventory.getNumOfLemons() + " Lemons and " + player.getMoney() + " dollars .\n how many would you like to purchase?");
             Console.WriteLine("1. 10 lemons for $0.73");
             Console.WriteLine("2. 30 lemons for $2.22");
-            Console.WriteLine("1. 75 lemons for $4.48");
+            Console.WriteLine("3. 75 lemons for $4.48");
         }
 
         public void sugarScreen(Player player)
@@ -97,7 +103,7 @@ namespace lemonadeStand
             Console.WriteLine("you have " + playerInventory.getSugar() + " cups of sugar and " + player.getMoney() + " dollars.\n how many would you like to purchase?");
             Console.WriteLine("1. 8 cups for $0.65");
             Console.WriteLine("2. 20 cups for $1.74");
-            Console.WriteLine("1. 48 cups for $3.37");
+            Console.WriteLine("3. 48 cups for $3.37");
         }
 
         public void iceScreen(Player player)
@@ -106,7 +112,7 @@ namespace lemonadeStand
             Console.WriteLine("you have " + playerInventory.getIceCubes() + " ice cubes and " + player.getMoney() + " dollars.\n how many would you like to purchase?");
             Console.WriteLine("1. 100 ice cubes for $0.78");
             Console.WriteLine("2. 250 ice cubes for $2.12");
-            Console.WriteLine("1. 500 ice cubes for $3.72");
+            Console.WriteLine("3. 500 ice cubes for $3.72");
         }
 
         public Lemonade lemonadeCreation()

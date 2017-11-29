@@ -27,14 +27,29 @@ namespace lemonadeStand
             return numOfCups;
         }
 
+        public void setCups(int newValue)
+        {
+            numOfCups = newValue;
+        }
+
         public int getIceCubes()
         {
             return numOfIceCubes;
         }
 
+        public void setIceCubes(int newValue)
+        {
+            numOfIceCubes = newValue;
+        }
+
         public int getSugar()
         {
             return numOfSugar;
+        }
+
+        public void setSugar(int newValue)
+        {
+            numOfSugar = newValue;
         }
 
         public int getNumOfLemons()
@@ -45,6 +60,11 @@ namespace lemonadeStand
         public void addCups(int count)
         {
             numOfCups += count;
+        }
+
+        public void decrementCups()
+        {
+            numOfCups--;
         }
 
         public void addSugar(int count)
@@ -66,15 +86,59 @@ namespace lemonadeStand
             }
         }
 
-        public void clearBasket()
+        public void subtractSugar(int count)
         {
+            numOfSugar -= count;
+        }
+
+        public void subtractIceCubes(int count)
+        {
+            numOfIceCubes -= count;
+        }
+
+        public void subtractLemons(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                lemonBasket.RemoveAt(i);
+            }
+        }
+
+        public bool enoughIngredients(Lemonade recipe)
+        {
+            if(lemonBasket.Count < recipe.getLemons() || numOfIceCubes < recipe.getIceCubes()|| numOfSugar < recipe.getSugar())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool areEnoughCups()
+        {
+            if(numOfCups > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public int clearBasket()
+        {
+            int spoilCount = 0;
+
             for(int i=0; i<lemonBasket.Count; i++)
             {
                 if (lemonBasket[i].IsSpoiled())
                 {
                     lemonBasket.RemoveAt(i);
+                    spoilCount++;
                 }
             }
+
+            return spoilCount;
         }
 
     }

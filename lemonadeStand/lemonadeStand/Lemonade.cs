@@ -28,6 +28,22 @@ namespace lemonadeStand
             cupsLeft = Convert.ToInt32(cupsLeftDecimal);
         }
 
+        public void decrementCups()
+        {
+            cupsLeft--;
+        }
+
+        public bool isEmpty()
+        {
+            if (cupsLeft == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public int getLemons()
         {
             return lemons;

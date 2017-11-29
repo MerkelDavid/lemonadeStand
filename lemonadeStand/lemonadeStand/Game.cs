@@ -11,6 +11,7 @@ namespace lemonadeStand
         private int numDays;
         private UI UIInstance = new UI();
         private Player player1 = new Player();
+        private Random randomSeed = new Random();
 
         public Game(int numDays)
         {
@@ -24,10 +25,16 @@ namespace lemonadeStand
 
         public void GameLoop()
         {
-            Weather forcast = generateWeather();
-            inventoryScreen(null);
-            Lemonade recipe = UIInstance.lemonadeCreation();
-            simulateDay(recipe,forcast);
+            player1.setName(UIInstance.getUserName());
+            for (int i = 0; i < numDays; i++)
+            {
+                Weather forcast = generateWeather();
+                inventoryScreen(forcast);
+                Lemonade recipe = UIInstance.lemonadeCreation();
+                double profit = simulateDay(recipe, forcast);
+                endOfDay(profit);
+            }
+            endSceen(profit);
         }
 
         public Weather inventoryScreen(Weather forcast)
@@ -44,6 +51,7 @@ namespace lemonadeStand
                 Console.WriteLine("Please enter a valid input");
                 inventoryScreen(forcast);
             }
+            return null;
         }
 
         public void inventorySwitch(int inventoryInput,Weather forcast)
@@ -146,10 +154,113 @@ namespace lemonadeStand
             else return false;
         }
 
-        public void simulateDay(Lemonade recipe,Weather forcast)
+        //to do check for valid ingredients
+        public double simulateDay(Lemonade pitcher,Weather forcast)
         {
-            int numberOfCustomers = generateNumberOfCustomers(recipe, forcast);
+            Inventory playerInventory = player1.getInventory();
+            Customers customerInstance = new Customers(pitcher,forcast);
+            int numberOfCustomers = generateNumberOfCustomers(pitcher, forcast);
+            double profit = 0;
+            if (!playerInventory.enoughIngredients(pitcher))
+            {
+                return 0;
+            }
+            player1.decrementIngredients(pitcher);
+            for (int i = 0; i < numberOfCustomers; i++){
+                Customers currentCustomer = new Customers(pitcher,forcast);
+
+                if (currentCustomer.isBuying() && playerInventory.areEnoughCups())
+                {
+                    pitcher.decrementCups();
+                    playerInventory.decrementCups();
+                    player1.addMoney(pitcher.getPrice());
+                    profit += pitcher.getPrice();
+
+                    if (pitcher.isEmpty())
+                    {
+                        if (playerInventory.enoughIngredients(pitcher))
+                        {
+                            player1.decrementIngredients(pitcher);
+                            pitcher = new Lemonade(pitcher.getLemons(), pitcher.getSugar(), pitcher.getIceCubes(), pitcher.getPrice());
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            return profit;
+        }
+        public int generateNumberOfCustomers(Lemonade recipe, Weather forcast)
+        {
+            int numberOfCustomers = 10;
+
+            if (forcast.getWeather() == "sunny")
+            {
+                numberOfCustomers = randomSeed.Next(50, 75);
+            }
+            else if(forcast.getWeather() == "cloudy")
+            {
+                numberOfCustomers = randomSeed.Next(25, 50);
+            }
+            else if(forcast.getWeather() == "rainy")
+            {
+                numberOfCustomers = randomSeed.Next(11, 25);
+            }
+            return numberOfCustomers;
+       }
+
+        public void endOfDay(double profit)
+        {
+            Console.Clear();
+            displayProfit(profit);
+            spoilLemons();
+            meltIceCubes();
+            checkForFlies();
+
+            Console.WriteLine("press any button to continue.");
+            Console.ReadKey();
         }
 
+        public void displayProfit(double profit)
+        {
+            Console.WriteLine("you made $" + profit + " today");
+        }
+
+        public void spoilLemons()
+        {
+            int spoilCount = 0;
+            spoilCount += player1.clearLemonBasket();
+            Console.WriteLine(spoilCount + " lemons have spoiled");
+        }
+
+        public void meltIceCubes()
+        {
+            player1.meltIceCubes();
+            Console.WriteLine("Your ice cubes have melted");
+        }
+
+        public void checkForFlies()
+        {
+            int chanceForFlies = randomSeed.Next(1, 4);
+            if (chanceForFlies == 1)
+            {
+                player1.clearSugar();
+                Console.WriteLine("flies have eaten all of your sugar!");
+            }
+        }
+
+        public void endScreen(double profit)
+        {
+            //add database entry here
+            Console.WriteLine("Congradulations! " + player1.getName() + " You made $" + (profit - 20));
+            Console.WriteLine("Press 1 to restart or 2 to exit the program");
+            string choice = Console.ReadLine();
+            if ( choice == "1")
+            {
+                UIInstance.TitleScreen();
+            }
+        }
     }
 }

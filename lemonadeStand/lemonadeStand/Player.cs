@@ -18,14 +18,19 @@ namespace lemonadeStand
             money = 20;
         }
 
-        public double getMoney()
+        public void setName (string name)
         {
-            return money;
+            this.name = name;
         }
 
         public string getName()
         {
             return name;
+        }
+
+        public double getMoney()
+        {
+            return money;
         }
 
         public Inventory getInventory()
@@ -212,6 +217,28 @@ namespace lemonadeStand
                     Console.WriteLine("You do not have sufficient funds.");
                 }
             }
+        }
+
+        public void decrementIngredients(Lemonade recipe)
+        {
+            playerInventory.subtractIceCubes(recipe.getIceCubes());
+            playerInventory.subtractLemons(recipe.getLemons());
+            playerInventory.subtractSugar(recipe.getSugar());
+        }
+
+        public int clearLemonBasket()
+        {
+            return playerInventory.clearBasket();
+        }
+
+        public void meltIceCubes()
+        {
+            playerInventory.setIceCubes(0);
+        }
+
+        public void clearSugar()
+        {
+            playerInventory.setSugar(0);
         }
     }
 }

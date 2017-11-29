@@ -11,21 +11,41 @@ namespace lemonadeStand
         private Random randomSeed = new Random();
         private int ChanceToPurchase;
 
-        public Customers()
+        public Customers(Lemonade recipe, Weather forcast)
         {
-            ChanceToPurchase = randomSeed.Next(1,10);
+            ChanceToPurchase = generatePurchaseChance(recipe, forcast);
         }
 
-        public int generateNumberOfCustomers(Lemonade recipe, Weather forcast)
+        public int generatePurchaseChance(Lemonade recipe, Weather forcast)
         {
-            int numberOfCustomers = randomSeed.Next(1, 100);
+            int chanceToPurchase = randomSeed.Next(1, 20);
+            if (forcast.getTempurature()>75 && recipe.getIceCubes()> 2)
+            {
+                chanceToPurchase += 4;
+            }
 
-            return numberOfCustomers;
+            double CTPDouble = ((recipe.getPrice()+1) / 3);
+            CTPDouble = Math.Floor(CTPDouble);
+            chanceToPurchase -= Convert.ToInt32(CTPDouble);
+
+            int wateredDown = (recipe.getSugar() + recipe.getLemons()) - recipe.getIceCubes();
+
+            if (wateredDown > 0)
+            {
+                chanceToPurchase += 2;
+            }
+            else
+            {
+                chanceToPurchase -= wateredDown;
+            }
+
+            return chanceToPurchase;
+
         }
 
         public bool isBuying()
         {
-            if(ChanceToPurchase >= 5)
+            if(ChanceToPurchase > 5)
             {
                 return true;
             }
