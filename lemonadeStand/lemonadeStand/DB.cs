@@ -34,6 +34,22 @@ namespace lemonadeStand
             transaction.Commit();
 
         }
+
+        public void getHighScores()
+        {
+
+            seed.Open();
+
+            SqlCommand command = new SqlCommand("SELECT TOP 10 name,score FROM Scores ORDER BY score DESC", seed);
+            SqlDataReader reader = command.ExecuteReader();
+            Console.WriteLine("HIGH SCORES");
+            Console.WriteLine("-----------");
+            while (reader.Read())
+            {
+                Console.WriteLine(reader.GetString(0) +"\t"+ reader.GetDouble(1));
+            }
+
+        }
     }
 
 }

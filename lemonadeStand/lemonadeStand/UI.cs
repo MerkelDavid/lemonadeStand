@@ -8,13 +8,15 @@ namespace lemonadeStand
 {
     class UI
     {
-
-
         public void TitleScreen()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to Lemonade Stand. Press any button to continue.");
+            Console.WriteLine("Welcome to Lemonade Stand.\n");
+            DB dbConnection = new DB();
+            dbConnection.getHighScores();
+            Console.WriteLine("Press any button to continue.");
             Console.ReadKey();
+            Console.Clear();
             GetDays();
         }
 
