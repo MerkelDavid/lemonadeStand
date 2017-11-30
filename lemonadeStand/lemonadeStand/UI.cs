@@ -12,6 +12,7 @@ namespace lemonadeStand
 
         public void TitleScreen()
         {
+            Console.Clear();
             Console.WriteLine("Welcome to Lemonade Stand. Press any button to continue.");
             Console.ReadKey();
             GetDays();
@@ -22,7 +23,7 @@ namespace lemonadeStand
             Console.WriteLine("How many days would you like to play for? (enter a number between 7 and 100)");
             int numDays = Convert.ToInt32(Console.ReadLine());
             if (Between7And100(numDays)) {
-                Game gameInstance = new Game();
+                Game gameInstance = new Game(numDays);
                 gameInstance.GameLoop();
             }
             else
@@ -67,12 +68,11 @@ namespace lemonadeStand
             Console.WriteLine("3. buy more sugar.");
             Console.WriteLine("4. buy more ice cubes");
             Console.WriteLine("5. Continue");
-            Console.WriteLine("6. Quit");
         }
 
         public bool isValidInventoryInput(int inventoryInput)
         {
-            if (inventoryInput > 0 && inventoryInput < 7)
+            if (inventoryInput > 0 && inventoryInput < 6)
             {
                 return true;
             }
@@ -86,6 +86,7 @@ namespace lemonadeStand
             Console.WriteLine("1. 25 cups for $0.76");
             Console.WriteLine("2. 50 cups for $1.62");
             Console.WriteLine("3. 100 cups for $2.84");
+            Console.WriteLine("4. Buy None");
         }
 
         public void lemonScreen(Player player)
@@ -95,6 +96,7 @@ namespace lemonadeStand
             Console.WriteLine("1. 10 lemons for $0.73");
             Console.WriteLine("2. 30 lemons for $2.22");
             Console.WriteLine("3. 75 lemons for $4.48");
+            Console.WriteLine("4. Buy None");
         }
 
         public void sugarScreen(Player player)
@@ -104,6 +106,7 @@ namespace lemonadeStand
             Console.WriteLine("1. 8 cups for $0.65");
             Console.WriteLine("2. 20 cups for $1.74");
             Console.WriteLine("3. 48 cups for $3.37");
+            Console.WriteLine("4. Buy None");
         }
 
         public void iceScreen(Player player)
@@ -113,6 +116,7 @@ namespace lemonadeStand
             Console.WriteLine("1. 100 ice cubes for $0.78");
             Console.WriteLine("2. 250 ice cubes for $2.12");
             Console.WriteLine("3. 500 ice cubes for $3.72");
+            Console.WriteLine("4. Buy None");
         }
 
         public Lemonade lemonadeCreation()
@@ -220,6 +224,24 @@ namespace lemonadeStand
                 return price;
             }
             return 0;
+        }
+
+        public void endScreen(Player player1)
+        {
+            DB dbConnection = new DB();
+            dbConnection.addTodataBase(player1.getName(), (player1.getMoney()));
+            Console.WriteLine("Congradulations! " + player1.getName() + " You made $" + (player1.getMoney() - 20));
+            Console.WriteLine("Press 1 to restart or 2 to exit the program");
+            string choice = Console.ReadLine();
+            if (choice == "1")
+            {
+               TitleScreen();
+            }
+        }
+
+        public void displayProfit(double profit)
+        {
+            Console.WriteLine("you made $" + profit + " today");
         }
     }
 }

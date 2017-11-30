@@ -34,7 +34,7 @@ namespace lemonadeStand
                 double profit = simulateDay(recipe, forcast);
                 endOfDay(profit);
             }
-            endSceen(profit);
+            UIInstance.endScreen(player1);
         }
 
         public Weather inventoryScreen(Weather forcast)
@@ -77,9 +77,6 @@ namespace lemonadeStand
                     break;
                 case 5:
                     Console.Clear();
-                    break;
-                case 6:
-                    //quit
                     break;
             }
         }
@@ -147,7 +144,7 @@ namespace lemonadeStand
         public bool userChoiceValidation(string userChoice)
         {
             int n;
-            if (int.TryParse(userChoice, out n) && n > 0 && n < 4)
+            if (int.TryParse(userChoice, out n) && n > 0 && n < 5)
             {
                 return true;
             }
@@ -214,7 +211,7 @@ namespace lemonadeStand
         public void endOfDay(double profit)
         {
             Console.Clear();
-            displayProfit(profit);
+            UIInstance.displayProfit(profit);
             spoilLemons();
             meltIceCubes();
             checkForFlies();
@@ -223,14 +220,11 @@ namespace lemonadeStand
             Console.ReadKey();
         }
 
-        public void displayProfit(double profit)
-        {
-            Console.WriteLine("you made $" + profit + " today");
-        }
-
         public void spoilLemons()
         {
             int spoilCount = 0;
+            Inventory playerInventory = player1.getInventory();
+            playerInventory.spoilLemons();
             spoilCount += player1.clearLemonBasket();
             Console.WriteLine(spoilCount + " lemons have spoiled");
         }
@@ -251,16 +245,5 @@ namespace lemonadeStand
             }
         }
 
-        public void endScreen(double profit)
-        {
-            //add database entry here
-            Console.WriteLine("Congradulations! " + player1.getName() + " You made $" + (profit - 20));
-            Console.WriteLine("Press 1 to restart or 2 to exit the program");
-            string choice = Console.ReadLine();
-            if ( choice == "1")
-            {
-                UIInstance.TitleScreen();
-            }
-        }
     }
 }

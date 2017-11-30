@@ -12,6 +12,7 @@ namespace lemonadeStand
         {
             UI UIInstance = new UI();
             UIInstance.TitleScreen();
+
         }
     }
 }

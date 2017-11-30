@@ -100,7 +100,7 @@ namespace lemonadeStand
         {
             for (int i = 0; i < count; i++)
             {
-                lemonBasket.RemoveAt(i);
+                lemonBasket.RemoveAt(0);
             }
         }
 
@@ -128,18 +128,29 @@ namespace lemonadeStand
         public int clearBasket()
         {
             int spoilCount = 0;
+            int numOfLemons = lemonBasket.Count();
 
-            for(int i=0; i<lemonBasket.Count; i++)
+            for (int i=0; i<lemonBasket.Count(); i++)
             {
                 if (lemonBasket[i].IsSpoiled())
                 {
                     lemonBasket.RemoveAt(i);
                     spoilCount++;
+                    //accounting for the removeAt()
+                    i--;
                 }
             }
 
             return spoilCount;
         }
 
+        public void spoilLemons()
+        {
+
+            for (int i = 0; i < lemonBasket.Count; i++)
+            {
+                lemonBasket[i].IncrementDaysOld();
+            }
+        }
     }
 }
