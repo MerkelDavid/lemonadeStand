@@ -8,6 +8,7 @@ namespace lemonadeStand
 {
     class UI
     {
+
         public void TitleScreen()
         {
             Console.Clear();
@@ -22,10 +23,11 @@ namespace lemonadeStand
 
         public void GetDays()
         {
+            Game gameHelperObject = new Game();
             Console.WriteLine("How many days would you like to play for? (enter a number between 7 and 100)");
-            int numDays = Convert.ToInt32(Console.ReadLine());
-            if (Between7And100(numDays)) {
-                Game gameInstance = new Game(numDays);
+            string numDays = Console.ReadLine();
+            if (gameHelperObject.inputValidation(numDays, 7, 100)) {
+                Game gameInstance = new Game(Convert.ToInt32(numDays));
                 gameInstance.GameLoop();
             }
             else
@@ -39,18 +41,6 @@ namespace lemonadeStand
         {
             Console.WriteLine("What is your name?");
             return Console.ReadLine();
-        }
-
-        public bool Between7And100(int numDays)
-        {
-            if (numDays > 6 && numDays < 101)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         public void displayPurchaseScreen(Player player, Weather forcast)
@@ -70,15 +60,6 @@ namespace lemonadeStand
             Console.WriteLine("3. buy more sugar.");
             Console.WriteLine("4. buy more ice cubes");
             Console.WriteLine("5. Continue");
-        }
-
-        public bool isValidInventoryInput(int inventoryInput)
-        {
-            if (inventoryInput > 0 && inventoryInput < 6)
-            {
-                return true;
-            }
-            else return false;
         }
 
         public void cupsScreen(Player player)

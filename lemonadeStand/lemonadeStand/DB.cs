@@ -48,6 +48,7 @@ namespace lemonadeStand
             {
                 Console.WriteLine(reader.GetString(0) +"\t"+ reader.GetDouble(1));
             }
+            Console.WriteLine("");
 
         }
     }

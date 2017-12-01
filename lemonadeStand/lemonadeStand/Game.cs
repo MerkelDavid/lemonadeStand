@@ -13,6 +13,8 @@ namespace lemonadeStand
         private Player player1 = new Player();
         private Random randomSeed = new Random();
 
+        public Game() { }
+
         public Game(int numDays)
         {
             this.numDays = numDays;
@@ -40,10 +42,10 @@ namespace lemonadeStand
         public Weather inventoryScreen(Weather forcast)
         {
             UIInstance.displayPurchaseScreen(player1, forcast);
-            int inventoryInput = Convert.ToInt32(Console.ReadLine());
-            if (UIInstance.isValidInventoryInput(inventoryInput))
+            string inventoryInput = Console.ReadLine();
+            if (inputValidation(inventoryInput,1,5))
             {
-                inventorySwitch(inventoryInput,forcast); 
+                inventorySwitch(Convert.ToInt32(inventoryInput),forcast); 
             }
             else
             {
@@ -86,7 +88,7 @@ namespace lemonadeStand
             Console.Clear();
             UIInstance.cupsScreen(player1);
             string userChoice = Console.ReadLine();
-            if (userChoiceValidation(userChoice))
+            if (inputValidation(userChoice, 1, 4))
             {
                 player1.purchaseCups(Convert.ToInt32(userChoice));
             }
@@ -101,7 +103,7 @@ namespace lemonadeStand
             Console.Clear();
             UIInstance.lemonScreen(player1);
             string userChoice = Console.ReadLine();
-            if (userChoiceValidation(userChoice))
+            if (inputValidation(userChoice, 1, 4))
             {
                 player1.purchaseLemons(Convert.ToInt32(userChoice));
             }
@@ -116,7 +118,7 @@ namespace lemonadeStand
             Console.Clear();
             UIInstance.sugarScreen(player1);
             string userChoice = Console.ReadLine();
-            if (userChoiceValidation(userChoice))
+            if (inputValidation(userChoice, 1, 4))
             {
                 player1.purchaseSugar(Convert.ToInt32(userChoice));
             }
@@ -131,7 +133,7 @@ namespace lemonadeStand
             Console.Clear();
             UIInstance.iceScreen(player1);
             string userChoice = Console.ReadLine();
-            if (userChoiceValidation(userChoice))
+            if (inputValidation(userChoice,1,4))
             {
                 player1.purchaseIceCubes(Convert.ToInt32(userChoice));
             }
@@ -141,14 +143,33 @@ namespace lemonadeStand
             }
         }
 
-        public bool userChoiceValidation(string userChoice)
+        public bool inputValidation(string userChoice,int lowerBound, int upperBound)
+        {
+            if(isInt(userChoice) && isBetweenTwoNumbers(userChoice, lowerBound, upperBound)){
+                return true;
+            }
+            return false;
+        }
+
+        public bool isInt(string userChoice)
         {
             int n;
-            if (int.TryParse(userChoice, out n) && n > 0 && n < 5)
+            if (int.TryParse(userChoice, out n))
             {
                 return true;
             }
             else return false;
+        }
+
+        public bool isBetweenTwoNumbers(string userChoice,int lowerBound, int upperBound)
+        {
+            int choiceInt = Convert.ToInt32(userChoice);
+
+            if (choiceInt >= lowerBound && choiceInt <= upperBound)
+            {
+                return true;
+            }
+            return false;
         }
 
         //to do check for valid ingredients

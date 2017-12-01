@@ -35,11 +35,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addCups(25);
                     wallet.subtractMoney(.76);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             else if (userChoice == 2)
@@ -48,11 +50,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addCups(50);
                     wallet.subtractMoney(1.62);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             if (userChoice == 3)
@@ -61,11 +65,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addCups(100);
                     wallet.subtractMoney(2.84);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
 
@@ -79,11 +85,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addLemons(10);
                     wallet.subtractMoney(.73);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             else if (userChoice == 2)
@@ -92,11 +100,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addLemons(30);
                     wallet.subtractMoney(2.22);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             if (userChoice == 3)
@@ -105,11 +115,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addLemons(75);
                     wallet.subtractMoney(4.48);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
         }
@@ -121,11 +133,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addSugar(8);
                     wallet.subtractMoney(.65);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             else if (userChoice == 2)
@@ -134,11 +148,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addSugar(20);
                     wallet.subtractMoney(1.74);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             if (userChoice == 3)
@@ -147,11 +163,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addSugar(48);
                     wallet.subtractMoney(3.37);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
         }
@@ -163,11 +181,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addIceCubes(100);
                     wallet.subtractMoney(.78);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             else if (userChoice == 2)
@@ -176,11 +196,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addIceCubes(250);
                     wallet.subtractMoney(2.12);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
             if (userChoice == 3)
@@ -189,11 +211,13 @@ namespace lemonadeStand
                 {
                     playerInventory.addIceCubes(500);
                     wallet.subtractMoney(3.72);
-                    Console.WriteLine("Your purchase was successfull.");
+                    Console.Clear();
+                    Console.WriteLine("Your purchase was successfull.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have sufficient funds.");
+                    Console.Clear();
+                    Console.WriteLine("You do not have sufficient funds.\n");
                 }
             }
         }
